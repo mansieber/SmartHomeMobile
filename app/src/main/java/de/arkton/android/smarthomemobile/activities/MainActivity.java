@@ -9,12 +9,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import de.arkton.android.smarthomemobile.R;
+import de.arkton.android.smarthomemobile.support.MqttSender;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String LOG_CLASS = MainActivity.class.getSimpleName();
+    private MqttSender sender;
 
     // region 1 Live cycle
     @Override
@@ -25,7 +28,10 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        EditText logOutput = (EditText) findViewById(R.id.editLogData);
+        sender = new MqttSender(this);
+        sender.connect();
+
+        TextView logOutput = (TextView) findViewById(R.id.textViewLogData);
         Button guestButton = (Button) findViewById(R.id.buttonGuest);
         guestButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Log.d(LOG_CLASS,"onStart");
+
     }
 
     @Override
@@ -81,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.d(LOG_CLASS, "onDestroy");
+
+        sender.closeConnection();
     }
 
     //endregion
@@ -102,6 +111,14 @@ public class MainActivity extends AppCompatActivity {
         Log.d(LOG_CLASS, "Start OutsideActivity");
         Intent intent = new Intent(this, OutsideActivity.class);
         startActivity(intent);
+    }
+
+    //endregion
+
+    //region 3 Public methods
+    public void setStatus(String msg) {
+        TextView statusOutput = (TextView) findViewById(R.id.textViewConnectionStatus);
+        statusOutput.setText(msg);
     }
 
     //endregion

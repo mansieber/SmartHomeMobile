@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import de.arkton.android.smarthomemobile.R;
 
@@ -23,6 +25,14 @@ public class KitchenActivity extends AppCompatActivity {
         Log.d(LOG_CLASS,"onStart");
 
         setContentView(R.layout.activity_kitchen);
+
+        Button onButton = (Button) findViewById(R.id.buttonKitchenStripeOn);
+        onButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View buttonView) {
+
+            }
+        });
     }
 
     @Override

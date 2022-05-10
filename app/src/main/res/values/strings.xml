@@ -12,5 +12,7 @@
     <string name="labelViewKitchenStripe">Light Stripe</string>
     <string name="labelViewGuestStair">Stair Light</string>
     <string name="labelViewOutsideEastLight">East Light</string>
+    <string name="labelStatusOutput">Connection Status</string>
     <string name="hintLogOutput">Logging Data</string>
+    <string name="hintStatusOutput">Connection Status</string>
 </resources>
