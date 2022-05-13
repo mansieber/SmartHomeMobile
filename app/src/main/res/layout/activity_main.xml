@@ -14,43 +14,6 @@
     android:paddingBottom="10dp"
     tools:context=".activities.MainActivity">
 
-    <Button
-        android:id="@+id/buttonGuest"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="@string/labelButtonGuest"
-        android:textSize="18sp" />
-
-    <Button
-        android:id="@+id/buttonKitchen"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="@string/labelButtonKitchen"
-        android:textSize="18sp" />
-
-    <Button
-        android:id="@+id/buttonOutside"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="@string/labelButtonOutside"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/textViewLogData"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="15dp"
-        android:layout_weight="1"
-        android:editable="false"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="@string/hintLogOutput"
-        android:inputType="textMultiLine"
-        android:textSize="12sp" />
-
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -80,4 +43,15 @@
             android:textSize="14sp" />
 
     </LinearLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </LinearLayout>

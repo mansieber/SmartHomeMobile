@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">SmartHomeMobile</string>
-    <string name="labelButtonGuest">Guest Room</string>
-    <string name="labelButtonKitchen">Kitchen</string>
-    <string name="labelButtonOutside">Outside Lights</string>
+    <string name="labelTabGuest">Guest</string>
+    <string name="labelTabKitchen">Kitchen</string>
+    <string name="labelTabOutside">Outside</string>
     <string name="labelButtonOn">On</string>
     <string name="labelButtonOff">Off</string>
     <string name="labelTitleGuest">Guest Room Control</string>

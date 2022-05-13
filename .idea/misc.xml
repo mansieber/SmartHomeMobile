@@ -7,6 +7,9 @@
         <entry key="..\:/Users/manni/AndroidStudioProjects/SmartHomeMobile/app/src/main/res/layout/activity_kitchen.xml" value="0.25" />
         <entry key="..\:/Users/manni/AndroidStudioProjects/SmartHomeMobile/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/manni/AndroidStudioProjects/SmartHomeMobile/app/src/main/res/layout/activity_outside.xml" value="0.33" />
+        <entry key="..\:/Users/manni/AndroidStudioProjects/SmartHomeMobile/app/src/main/res/layout/fragment_guest.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/manni/AndroidStudioProjects/SmartHomeMobile/app/src/main/res/layout/fragment_kitchen.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/manni/AndroidStudioProjects/SmartHomeMobile/app/src/main/res/layout/fragment_outside.xml" value="0.25" />
       </map>
     </option>
   </component>
