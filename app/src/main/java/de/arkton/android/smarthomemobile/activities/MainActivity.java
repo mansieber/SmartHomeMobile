@@ -1,18 +1,11 @@
 package de.arkton.android.smarthomemobile.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
@@ -21,9 +14,12 @@ import de.arkton.android.smarthomemobile.R;
 import de.arkton.android.smarthomemobile.fragments.GuestFragment;
 import de.arkton.android.smarthomemobile.fragments.KitchenFragment;
 import de.arkton.android.smarthomemobile.fragments.OutsideFragment;
+import de.arkton.android.smarthomemobile.fragments.ViewPagerAdapter;
 import de.arkton.android.smarthomemobile.support.MqttSender;
 
 public class MainActivity extends AppCompatActivity {
+
+    // region 0 Class members
 
     private static final String LOG_CLASS = MainActivity.class.getSimpleName();
     private MqttSender sender;
@@ -33,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        FrameLayout frameLayout;
         TabLayout tabLayout;
+        ViewPager viewPager;
 
         Log.d(LOG_CLASS,"onCreate");
 
@@ -45,51 +41,16 @@ public class MainActivity extends AppCompatActivity {
 
 //        TextView logOutput = (TextView) findViewById(R.id.textViewLogData);
 
-        frameLayout = (FrameLayout) findViewById(R.id.frameLayout);
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
 
-        TabLayout.Tab guestTab = tabLayout.newTab();
-        guestTab.setText(R.string.labelTabGuest);
-        tabLayout.addTab(guestTab);
+        tabLayout.setupWithViewPager(viewPager);
+        ViewPagerAdapter vpAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        vpAdapter.addFragment(new KitchenFragment(), getResources().getString(R.string.labelTabKitchen));
+        vpAdapter.addFragment(new GuestFragment(), getResources().getString(R.string.labelTabGuest));
+        vpAdapter.addFragment(new OutsideFragment(), getResources().getString(R.string.labelTabOutside));
+        viewPager.setAdapter(vpAdapter);
 
-        TabLayout.Tab kitchenTab = tabLayout.newTab();
-        guestTab.setText(R.string.labelTabKitchen);
-        tabLayout.addTab(kitchenTab);
-
-        TabLayout.Tab outsideTab = tabLayout.newTab();
-        guestTab.setText(R.string.labelTabOutside);
-        tabLayout.addTab(outsideTab);
-
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                Fragment fragment = null;
-                switch ( tab.getPosition() ) {
-                    case 0:
-                        fragment = new GuestFragment();
-                        break;
-                    case 1:
-                        fragment = new KitchenFragment();
-                        break;
-                    case 2:
-                        fragment = new OutsideFragment();
-                        break;
-                }
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.frameLayout, fragment);
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                ft.commit();
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-            }
-        });
     }
 
     @Override
