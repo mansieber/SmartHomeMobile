@@ -13,12 +13,19 @@ import androidx.fragment.app.Fragment;
 import de.arkton.android.smarthomemobile.R;
 
 import de.arkton.android.smarthomemobile.activities.MainActivity;
+import de.arkton.android.smarthomemobile.support.MqttSender;
 
 /**
  * Instance of the class represents the kitchen tab of the display.
  */
 public class KitchenFragment extends Fragment {
     private static final String LOG_CLASS = KitchenFragment.class.getSimpleName();
+    private static final String TOPIC_STRIPE = "/mimahome/kitchen/ledcontrol";
+    private MqttSender sender;
+
+    public KitchenFragment(MqttSender sender) {
+        this.sender = sender;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,6 +42,7 @@ public class KitchenFragment extends Fragment {
         btn = (Button) getView().findViewById(R.id.buttonKitchenStripeOn);
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                sender.sendMessage(TOPIC_STRIPE, "Set", "ON");
                 Log.d(LOG_CLASS, "Kitchen Stripe On");
             }
         });
@@ -42,20 +50,22 @@ public class KitchenFragment extends Fragment {
         btn = (Button) getView().findViewById(R.id.buttonKitchenStripeOff);
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                sender.sendMessage(TOPIC_STRIPE, "Set", "OFF");
                 Log.d(LOG_CLASS, "Kitchen Stripe Off");
             }
         });
-
+/*
         btn = (Button) getView().findViewById(R.id.buttonKitchenStripePlus);
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d(LOG_CLASS, "Kitchen Stripe Increase");
             }
         });
-
+*/
         btn = (Button) getView().findViewById(R.id.buttonKitchenStripeMinus);
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                sender.sendMessage(TOPIC_STRIPE, "Intensity", "DIM");
                 Log.d(LOG_CLASS, "Kitchen Stripe Decrease");
             }
         });

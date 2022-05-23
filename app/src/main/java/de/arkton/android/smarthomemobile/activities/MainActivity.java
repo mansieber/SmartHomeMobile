@@ -46,9 +46,9 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout.setupWithViewPager(viewPager);
         ViewPagerAdapter vpAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        vpAdapter.addFragment(new KitchenFragment(), getResources().getString(R.string.labelTabKitchen));
-        vpAdapter.addFragment(new GuestFragment(), getResources().getString(R.string.labelTabGuest));
-        vpAdapter.addFragment(new OutsideFragment(), getResources().getString(R.string.labelTabOutside));
+        vpAdapter.addFragment(new KitchenFragment(sender), getResources().getString(R.string.labelTabKitchen));
+        vpAdapter.addFragment(new GuestFragment(sender), getResources().getString(R.string.labelTabGuest));
+        vpAdapter.addFragment(new OutsideFragment(sender), getResources().getString(R.string.labelTabOutside));
         viewPager.setAdapter(vpAdapter);
 
     }

@@ -69,6 +69,7 @@
                 android:insetLeft="6dp"
                 android:insetRight="6dp"
                 android:text="+"
+                android:enabled="false"
                 android:textSize="18sp" />
 
             <Button
